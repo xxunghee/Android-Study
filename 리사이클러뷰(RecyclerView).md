@@ -88,16 +88,15 @@
      </center>
 
      
-
-     ** [item_info.xml](https://github.com/xxunghee/AndroidBasic/blob/main/MyRecycler/app/src/main/res/layout/item_info.xml) 생성 (코드 참고)*
-
-     ** 이름과 나이를 받아오기 때문에 `String name`, `int age`를 변수로 갖는 [Info.java](https://github.com/xxunghee/AndroidBasic/blob/main/MyRecycler/app/src/main/java/com/example/recycler/Info.java) 클래스 생성*
-
+** [item_info.xml](https://github.com/xxunghee/AndroidBasic/blob/main/MyRecycler/app/src/main/res/layout/item_info.xml) 생성 (코드 참고)*
+     
+** 이름과 나이를 받아오기 때문에 `String name`, `int age`를 변수로 갖는 [Info.java](https://github.com/xxunghee/AndroidBasic/blob/main/MyRecycler/app/src/main/java/com/example/recycler/Info.java) 클래스 생성*
      
 
-  3. Adapter 클래스 구현
-
-     ```java
+     
+3. Adapter 클래스 구현
+  
+   ```java
      public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
      
          //---- 데이터가 저장될 배열
@@ -149,12 +148,12 @@
          }
      }
      ```
-
-     
-
-  4. MainActivity.java에서 RecyclerView에 Adapter, LayoutManager 지정
-
-     ```java
+  
+   
+  
+4. MainActivity.java에서 RecyclerView에 Adapter, LayoutManager 지정
+  
+   ```java
      @Override
      protected void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
@@ -197,7 +196,155 @@
 
   
 
+### + DataBinding 적용
 
+- 구현
 
+  1. build.gradle(app) 수정
 
+     ```
+     android {
+     	... 생략
+     	dataBinding {
+     		enable true
+     	}
+     	... 생략
+     }
+     ```
+
+     
+
+  2. activity_main.xml 수정
+
+     ```xml
+     <?xml version="1.0" encoding="utf-8"?>
+     <layout xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:app="http://schemas.android.com/apk/res-auto">
+     
+         <data>
+             <variable
+                 name="main"
+                 type="com.example.recycler.MainActivity" />
+         </data>
+     
+         <!-- ConstraintLayout 태그 부분 -->
+     
+     </layout>
+     ```
+
+     
+
+  3. MainActivity.java 수정
+
+     ```java
+     // ...생략
+     import com.example.recycler.databinding.ActivityMainBinding;
+     // ...생략
+     
+     public class MainActivity extends AppCompatActivity {
+         //++++ Binding 객체 추가
+         ActivityMainBinding binding;
+         InfoAdapter adapter;
+     
+         @Override
+         protected void onCreate(Bundle savedInstanceState) {
+             super.onCreate(savedInstanceState);
+     
+             //++++ Layout 설정
+             binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+     
+             // ==생략 == (ArrayList에 데이터 추가)
+     
+             //++++ RecyclerView에 LayoutManager 지정
+             binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+     
+             //++++ RecyclerView에 Adapter 지정
+             adapter = new InfoAdapter(list);
+             binding.recyclerView.setAdapter(adapter);
+         }
+     }
+     ```
+
+     
+
+  4. item_info.xml 수정
+
+     ```xml
+     <?xml version="1.0" encoding="utf-8"?>
+     <layout xmlns:android="http://schemas.android.com/apk/res/android">
+     
+         <data>
+             <variable
+                 name="movie"
+                 type="com.example.recycler.Info"/>
+     
+         </data>
+         
+         <!-- FrameLayout 태그 부분 -->
+         
+     </layout>
+     ```
+
+     
+
+  5. InfoAdapter.java 수정
+
+     ```java
+     // ... 생략
+     import com.example.recycler.databinding.ItemInfoBinding;
+     // ... 생략
+     
+     public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
+         //---- 데이터가 저장될 배열
+         private ArrayList<Info> data = null;
+     
+         //---- 초기화
+         InfoAdapter(ArrayList<Info> list) {
+             data = list;
+         }
+     
+         //---- 아이템 뷰를 저장하고 화면에 보여주는 ViewHolder 클래스 생성
+         static class ViewHolder extends RecyclerView.ViewHolder {
+             //++++ Binding 객체
+             ItemInfoBinding binding;
+     
+             //++++ 생성자의 인자를 Binding 객체로 수정
+             ViewHolder(ItemInfoBinding binding) {
+                 super(binding.getRoot());
+                 this.binding = binding;
+             }
+     
+             //++++ 데이터 넣는 함수 분리하여 구현
+             public void bind(Info info) {
+                 binding.tvName.setText(info.getName());
+                 binding.tvAge.setText(info.getAge());
+             }
+         }
+     
+         //---- ViewHolder 생성
+         @NonNull
+         @Override
+         public InfoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+             //++++ 인플레이션
+             ItemInfoBinding binding = ItemInfoBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+     
+             return new ViewHolder(binding);
+         }
+     
+         //++++ 데이터를 bind()에 전달
+         @Override
+         public void onBindViewHolder(@NonNull InfoAdapter.ViewHolder holder, int position) {
+             Info info = data.get(position);
+             holder.bind(info);
+         }
+     
+         //---- 전체 데이터 수 리턴
+         @Override
+         public int getItemCount() {
+             return data.size();
+         }
+     }
+     ```
+
+     
 

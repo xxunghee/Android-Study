@@ -1,0 +1,8 @@
+com/example/tmaptest/BuildConfig.java
+ com.example.tmaptest.BuildConfig
+com/example/tmaptest/DataBindingTriggerClass.java
+ com.example.tmaptest.DataBindingTriggerClass
+com/example/tmaptest/databinding/ActivityMainBinding.java
+ com.example.tmaptest.databinding.ActivityMainBinding
+com/example/tmaptest/MainActivity.java
+ com.example.tmaptest.MainActivity

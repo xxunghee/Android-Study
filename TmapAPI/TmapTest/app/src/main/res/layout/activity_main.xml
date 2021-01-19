@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.skt.Tmap.TMapView
+    <!-- 추가 -->
+    <data>
+        <variable
+            name="main"
+            type="com.example.tmaptest.MainActivity"/>
+    </data>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="4">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.skt.tmapsample.tmapview.MapDraw">
 
-    </com.skt.Tmap.TMapView>
+        <LinearLayout
+            android:id="@+id/Tmapview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="T map API 사용하기"
-        android:textSize="20sp" />
+        </LinearLayout>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="T map API 사용해 지도 띄우기"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</layout>

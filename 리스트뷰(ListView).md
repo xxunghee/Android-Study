@@ -173,8 +173,8 @@
                binding.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                    @Override
                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                       binding.clickedImg.setImageResource(ninizs.get(position).getImg());
-                       binding.clickedTv.setText(ninizs.get(position).getName() + " 클릭!");
+                       binding.clickedImg.setImageResource(((Niniz) parent.getItemAtPosition(position)).getimg());
+                       binding.clickedTv.setText(((Niniz) parent.getItemAtPosition(position)).getName());
                    }
                });
            }

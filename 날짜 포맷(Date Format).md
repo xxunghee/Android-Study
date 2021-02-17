@@ -33,7 +33,7 @@
   
     ```java
      
-     String dateWithHours;  // String형 포맷 전 날짜 (ex. 2021-02-17T11:08:47)
+     String dateWithHours;   // String형 포맷 전 날짜 (ex. 2021-02-17T11:08:47)
       Date dateHours = null; // Date형 포맷 전 날짜
       String eventDate;      // 포맷 후 날짜 (ex. 2021-02-17)
       
@@ -67,7 +67,6 @@
     date = yyMMdd.format(curDate);
     
     ```
-  
 
 <br>
 
@@ -77,7 +76,7 @@
 
     | letter | content                                       |
     | :----: | :-------------------------------------------- |
-    |   y    | (날짜) - 년 (ex. 2021)                        |
+    |   y    | (날짜) 년 (ex. 2021)                          |
     |   M    | (날짜) 월 (ex. 2)                             |
     |   d    | (날짜) 일 (ex. 17)                            |
     |   E    | (요일) 이름 (ex. Wednessday)                  |

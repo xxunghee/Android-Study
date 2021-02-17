@@ -85,16 +85,16 @@
     <br>
 
   - 시간
-
-    | letter | content                   |
-    | :----: | :------------------------ |
-    |   H    | 시(0~23) (ex. 14)         |
-    |   m    | 분 (ex. 10)               |
-    |   s    | 초 (ex. 29)               |
-    |   S    | 밀리초 (ex. 620)          |
-    |   a    | AM/PM 마커 (ex. PM)       |
-    |   K    | AM/PM 시(0~11) (ex. 2)    |
-    |   h    | AM/PM 시(1~12) (ex. 2)    |
-    |   z    | Time zone (ex. GMT-09:00) |
-    |   Z    | Time zone (ex. -900)      |
-    |   X    | Time zone (ex. -09        |
+  
+    | letter | content                                |
+    | :----: | :------------------------------------- |
+    |   H    | 시(0~23) (ex. 14)                      |
+    |   m    | 분 (ex. 10)                            |
+    |   s    | 초 (ex. 29)                            |
+    |   S    | 밀리초 (ex. 620)                       |
+    |   a    | AM/PM 마커 (ex. PM)                    |
+    |   K    | AM/PM 시(0~11) (ex. 2)                 |
+    |   h    | AM/PM 시(1~12) (ex. 2)                 |
+    |   z    | Time zone (ex. GMT-09:00)              |
+    |   Z    | Time zone (ex. -900)                   |
+    |   X    | Time zone (ex. -09 or -0900 or -09:00) |

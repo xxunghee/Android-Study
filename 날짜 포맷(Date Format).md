@@ -25,36 +25,36 @@
     ```java
     import java.util.Date;
     import java.text.SimpleDateFormat;
-  ```
-  
-  <br>
-  
-  - `String`형 날짜 포맷
-  
-    ```java
-    
-    String dateWithHours;  // String형 포맷 전 날짜 (ex. 2021-02-17T11:08:47)
-    Date dateHours = null; // Date형 포맷 전 날짜
-    String eventDate;      // 포맷 후 날짜 (ex. 2021-02-17)
-    
-    dateWithHours = "2021-02-17T11:08:47"; // 서버 등에서 받아온 날짜로 초기화 또는 직접 입력
-    
-    //=== String -> Date 파싱 ===
-    SimpleDateFormat yyMMddHHmmss = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    try { // 날짜가 다른 형식일 경우를 대비한 try-catch 문
-        dateHours = yyMMddHHmmss.parse(dateWithHours);
-    } catch (ParseException e) {
-    	e.printStackTrace();
-  }
-    
-    //=== Date -> String 포맷 ===
-  SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
-    eventDate = yyyyMMdd.format(dateHours);
-    
     ```
     
     <br>
     
+  - `String`형 날짜 포맷
+  
+    ```java
+     
+     String dateWithHours;  // String형 포맷 전 날짜 (ex. 2021-02-17T11:08:47)
+      Date dateHours = null; // Date형 포맷 전 날짜
+      String eventDate;      // 포맷 후 날짜 (ex. 2021-02-17)
+      
+      dateWithHours = "2021-02-17T11:08:47"; // 서버 등에서 받아온 날짜로 초기화 또는 직접 입력
+      
+      //=== String -> Date 파싱 ===
+      SimpleDateFormat yyMMddHHmmss = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+      try { // 날짜가 다른 형식일 경우를 대비한 try-catch 문
+          dateHours = yyMMddHHmmss.parse(dateWithHours);
+      } catch (ParseException e) {
+      	e.printStackTrace();
+    }
+      
+      //=== Date -> String 포맷 ===
+    SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
+      eventDate = yyyyMMdd.format(dateHours);
+    
+    ```
+  
+    <br>
+  
   - `Date`형 날짜 포맷
   
     ```java
